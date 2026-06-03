@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>吉野賢治 様｜morich キャリアご提案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E60012;
+    --red-light: #fff0f0;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-900: #111827;
+    --blue-50: #eff6ff;
+    --blue-100: #dbeafe;
+    --blue-600: #2563eb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', sans-serif; background: #f5f5f5; color: var(--gray-900); line-height: 1.75; }
+  header { background: #fff; border-bottom: 3px solid var(--red); padding: 14px 24px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  header img { height: 38px; }
+  header .htxt p:first-child { font-size: 12px; color: var(--gray-500); }
+  header .htxt p:last-child { font-size: 17px; font-weight: 900; }
+  .nav-bar { background: var(--gray-900); padding: 0 12px; overflow-x: auto; white-space: nowrap; }
+  .nav-bar a { display: inline-block; padding: 13px 18px; color: #ccc; text-decoration: none; font-size: 12px; font-weight: 700; border-bottom: 3px solid transparent; transition: all 0.2s; }
+  .nav-bar a:hover { color: #fff; border-bottom-color: var(--red); }
+  main { max-width: 860px; margin: 0 auto; padding: 28px 14px 64px; }
+  .card { background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 40px; overflow: hidden; border-top: 5px solid var(--red); }
+  .card-inner { padding: 28px 28px 36px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+  .badge { font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 999px; border: 2px solid var(--red); color: var(--red); background: var(--red-light); }
+  .badge-blue { border-color: var(--blue-600); color: var(--blue-600); background: var(--blue-50); }
+  .co-name { font-size: clamp(22px, 5vw, 34px); font-weight: 900; line-height: 1.2; margin-bottom: 5px; }
+  .co-url { font-size: 12px; margin-bottom: 22px; }
+  .co-url a { color: var(--blue-600); text-decoration: none; }
+  .co-url a:hover { text-decoration: underline; }
+  .overview { background: var(--blue-50); border: 1px solid var(--blue-100); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .overview h3 { font-size: 10px; font-weight: 700; color: var(--blue-600); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px; }
+  .overview table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .overview tr { border-bottom: 1px solid var(--blue-100); }
+  .overview tr:last-child { border-bottom: none; }
+  .overview th { text-align: left; padding: 6px 14px 6px 0; color: var(--gray-600); font-weight: 700; width: 100px; vertical-align: top; white-space: nowrap; }
+  .overview td { padding: 6px 0; color: var(--gray-700); }
+  .highlight { background: var(--red-light); border: 2px solid var(--red); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .highlight h3 { font-size: 13px; font-weight: 900; color: var(--red); margin-bottom: 8px; }
+  .highlight p, .highlight li { font-size: 13px; color: #7a0000; margin-bottom: 4px; }
+  .highlight ul { padding-left: 16px; }
+  .accordion { margin-bottom: 16px; }
+  .acc-header { display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; padding: 12px 16px; background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; user-select: none; transition: background 0.15s; }
+  .acc-header:hover { background: var(--gray-100); }
+  .acc-header .label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--red); border-left: 3px solid var(--red); padding-left: 8px; margin-bottom: 5px; display: block; }
+  .acc-preview { font-size: 12px; color: var(--gray-500); line-height: 1.6; }
+  .acc-header-left { flex: 1; }
+  .acc-icon { width: 28px; height: 28px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--gray-200); font-size: 13px; transition: transform 0.25s, background 0.2s; }
+  .acc-header.open .acc-icon { transform: rotate(180deg); background: var(--red); color: #fff; }
+  .acc-header.open { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; }
+  .acc-body { display: none; padding: 20px 18px; border: 1px solid var(--gray-200); border-top: none; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .acc-body.open { display: block; }
+  .acc-body p { margin-bottom: 10px; }
+  .acc-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .acc-body li { margin-bottom: 6px; }
+  .job-wrap { border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
+  .job-header { background: var(--gray-900); color: #fff; padding: 14px 18px; display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; user-select: none; }
+  .job-title-text { font-size: 14px; font-weight: 900; margin-bottom: 3px; }
+  .job-preview { font-size: 11px; color: #aaa; line-height: 1.5; }
+  .job-icon { width: 26px; height: 26px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.15); font-size: 12px; transition: transform 0.25s; }
+  .job-header.open .job-icon { transform: rotate(180deg); }
+  .job-body { display: none; padding: 20px 18px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .job-body.open { display: block; }
+  .job-body p { margin-bottom: 10px; }
+  .job-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .job-body li { margin-bottom: 6px; }
+  .job-section { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: .06em; margin: 14px 0 6px; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-right: 5px; margin-bottom: 8px; }
+  .tag-must { background: var(--red); color: #fff; }
+  .tag-want { background: var(--gray-600); color: #fff; }
+  .meta-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+  .pill { font-size: 12px; font-weight: 700; padding: 4px 11px; border-radius: 999px; background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-200); }
+  .section-label { font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: .08em; border-left: 3px solid var(--red); padding-left: 8px; margin: 22px 0 10px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .lbtn { display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; border-radius: 6px; background: var(--gray-900); color: #fff; font-size: 12px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
+  .lbtn:hover { background: var(--red); }
+  .lbtn-out { background: transparent; color: var(--gray-900); border: 2px solid var(--gray-200); }
+  .lbtn-out:hover { background: var(--gray-900); color: #fff; border-color: var(--gray-900); }
+  footer { text-align: center; padding: 28px 16px; font-size: 11px; color: var(--gray-500); border-top: 1px solid var(--gray-200); background: #fff; }
+  @media(max-width:600px){ .card-inner{ padding: 18px 14px 24px; } .overview th { width: 80px; } }
+</style>
+</head>
+<body>
+<header>
+  <img src="morich_logo.jpg" alt="morich">
+  <div class="htxt">
+    <p>morich キャリアご提案資料</p>
+    <p>吉野賢治 様</p>
+  </div>
+</header>
+<nav class="nav-bar">
+  <a href="#k1">1. 株式会社テクノプロ コンサルティング・パートナーズ社</a>
+  <a href="#k2">2. 株式会社カオナビ</a>
+  <a href="#k3">3. ARアドバンストテクノロジ株式会社（ARI）</a>
+</nav>
+<main>
+
+<div class="card" id="k1"><div class="card-inner">
+  <div class="badges"><span class="badge">モノづくり事業本部長</span><span class="badge badge-blue">非上場</span></div>
+  <div class="co-name">株式会社テクノプロ コンサルティング・パートナーズ社</div>
+  <div class="co-url"><a href="https://shigeoka-morich.github.io/jobs/technopro.con_Monodukuri.html" target="_blank">https://shigeoka-morich.github.io/jobs/technopro.con_Monodukuri.html</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>東京都内</td></tr><tr><th>設立</th><td>2026年3月</td></tr><tr><th>事業内容</th><td>AI・データ活用、業務変革支援、システム構築・運用・保守・モダナイズを中心としたコンサルティング・SIの総合サービス</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>世界最大級のPEファンド「ブラックストーン」による出資を経た新成長戦略</li><li>従来のエンジニア派遣からソリューション提供型への大胆なビジネスモデル変革</li><li>年収1,500万円〜2,200万円＋ストックオプション付与の好待遇</li><li>副社長直下のDirector相当ポジションで経営に直接関与</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">株式会社テクノプロは、2025年に世界最大級のPEファンドであるブラックストーンによる出資を経て、新たな成長戦略を推進しています。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>株式会社テクノプロは、2025年に世界最大級のPEファンドであるブラックストーンによる出資を経て、新たな成長戦略を推進しています。その一環として、株式会社テクノプロ内に新カンパニー「コンサルティング・パートナーズ社」を設立します。</p><p>この新カンパニーは、従来のエンジニア派遣を中心としたビジネスから、ソリューション提供型のビジネスモデルへの変革を牽引する中心的な存在となります。テクノプログループの技術力と顧客基盤を活かしながら、AI・データ活用、業務変革支援、システム構築・運用・保守・モダナイズを中心としたコンサルティング・SIの総合ソリューションを提供する予定です。</p><p><strong>4つの事業領域</strong></p><ul><li>モノづくり領域：製造業向けECM、SCMおよびデータマネジメントのソリューション提供</li><li>モビリティ領域：モビリティ（特にSoftware Defined Vehicle領域）のソリューション提供</li><li>AI・データ・クラウド基盤領域：クラウド・セキュリティ・ネットワーク等の基盤技術ソリューション提供</li><li>AI・データ活用領域：AI・機械学習を活用したソリューション提供</li></ul></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 モノづくり事業本部長</div>
+          <div class="job-preview">製造業向けソリューション事業のPL責任者として既存事業の収益化と新規ソリューション創出を統括</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>ポジション概要</strong></p><p>事業運営責任者（Director相当）として、新カンパニー設立に伴いモノづくり事業領域のPL責任を持ち、既存事業の収益化と新規ソリューションの創出を統括いただきます。</p><p><strong>レポート先：</strong>副社長<br><strong>事業領域：</strong>製造業向けECM、SCMおよびデータマネジメントのソリューション提供</p><p><strong>主要業務内容</strong></p><ul><li>ECM・SCM領域の事業の戦略策定および実行指揮</li><li>製造業大手企業との長期パートナーシップ構築</li><li>ECM、SCMおよびデータマネジメント領域のソリューションの企画・開発の推進</li><li>配下組織のマネジメント</li><li>パートナー企業とのアライアンスの推進</li></ul><p><strong>応募要件</strong></p><p><span class='tag tag-must'>MUST</span></p><ul><li>製造業向けITソリューション事業の経験（8年以上が望ましい）</li><li>PL管理経験（事業規模50億円以上が望ましい）</li><li>組織マネジメント経験（100名以上が望ましい）</li><li>製造プロセス（生産・品質・物流）の理解（またはご入社前に集中的に学習できる方）</li></ul><p><span class='tag tag-want'>WANT</span></p><ul><li>大手製造業での業務改革プロジェクト経験</li><li>ECM・SCM等の基幹システム導入経験</li><li>スマートファクトリー構想の策定・実行経験</li></ul><p><strong>求める人物像</strong></p><p>製造業の現場を深く理解し、デジタル技術で変革を推進できる実行力のある方</p><p><strong>待遇</strong></p><p>年収：1,500万円〜2,200万円（経験・能力によりSO付与）</p>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://shigeoka-morich.github.io/jobs/technopro.con_Monodukuri.html" target="_blank">🏢 求人詳細</a></div>
+</div></div>
+
+<div class="card" id="k2"><div class="card-inner">
+  <div class="badges"><span class="badge">CXO（オープンポジション）</span><span class="badge badge-blue">上場</span></div>
+  <div class="co-name">株式会社カオナビ</div>
+  <div class="co-url"><a href="https://morich-inc.github.io/job-kaonavi-cxo/" target="_blank">https://morich-inc.github.io/job-kaonavi-cxo/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>東京都渋谷区渋谷2-24-12 渋谷スクランブルスクエア 38F</td></tr><tr><th>設立</th><td>2008年5月27日</td></tr><tr><th>従業員数</th><td>394名（2025年3月末時点／正社員のみ）</td></tr><tr><th>資本金</th><td>10億6,627万円</td></tr><tr><th>事業内容</th><td>タレントマネジメントシステム『カオナビ』の製造・販売・サポート</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>急成長中のSaaS企業でCXOポジションのオープンポジション</li><li>年収3,000万円までの好待遇</li><li>スーパーフレックス・フルリモート可能な柔軟な働き方</li><li>副業可能で兼業を推奨する先進的な制度</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">タレントマネジメントシステム『カオナビ』を提供する急成長中のSaaS企業です。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>株式会社カオナビは、タレントマネジメントシステム『カオナビ』の製造・販売・サポートを手がける企業です。人材管理に特化したSaaSソリューションを提供し、多くの企業の人材活用を支援しています。</p><p><strong>働き方の特徴</strong></p><ul><li><strong>My Work Style制度：</strong>ハイブリッド勤務、スーパーフレックス、スイッチワーク（中抜け可能）、±20時間制度</li><li><strong>兼業推奨：</strong>副業可能</li><li><strong>成果重視：</strong>労働時間ではなく成果や貢献度を重視した文化</li></ul><p>20:00にはほぼすべての社員が退勤する健全な労働環境を実現しています。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 【Confidential】CXO（オープンポジション）</div>
+          <div class="job-preview">ご経験やご志向に合わせてCXOポジションをメイクするオープンポジション</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>ポジション概要</strong></p><p>CXOポストのオープンポジションになります。ご経験やご志向に合わせてポジションメイクさせていただきます。</p><p><strong>対象ポジション例</strong></p><ul><li>CEO（最高経営責任者）</li><li>COO（最高執行責任者）</li><li>CFO（最高財務責任者）</li><li>CHRO（最高人事責任者）</li><li>CMO（最高マーケティング責任者）</li><li>CTO・CIO（最高技術責任者・最高情報責任者）</li><li>その他CXO</li><li>事業統括責任者</li><li>管理部長</li></ul><p><strong>待遇</strong></p><p>年収：応相談　～3,000万円</p><p><strong>選考プロセス</strong></p><p>書類選考→面接選考（2-3回）→内定<br>※面接選考は基本的にオンラインでの実施となります</p><p><strong>雇用形態</strong></p><p>正社員（契約社員または業務委託入口などの可能性もあり）</p>
+        <div class="meta-pills"><span class="pill">📍 東京（渋谷）</span><span class="pill">🏠 フルリモート可</span><span class="pill">✅ 副業可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://morich-inc.github.io/job-kaonavi-cxo/" target="_blank">🏢 求人詳細</a></div>
+</div></div>
+
+<div class="card" id="k3"><div class="card-inner">
+  <div class="badges"><span class="badge">執行役員候補</span><span class="badge badge-blue">上場</span></div>
+  <div class="co-name">ARアドバンストテクノロジ株式会社（ARI）</div>
+  <div class="co-url"><a href="" target="_blank"></a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>東京都渋谷区渋谷2-17-1 渋谷アクシュ18F</td></tr><tr><th>設立</th><td>2010年1月</td></tr><tr><th>従業員数</th><td>586名 グループ社員計782名（2025年11月末現在）</td></tr><tr><th>資本金</th><td>1億4,215万円（2025年11月末現在）</td></tr><tr><th>事業内容</th><td>クラウド技術とデータ・AI活用によるDXソリューション事業</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>上場したてのタイミングで成長戦略の中心を担えるポジション</li><li>数十億円規模の事業成長を想定した事業部統括責任者</li><li>年収1,000万円〜2,000万円の好待遇</li><li>技術に理解のある現場とともに実現可能な戦略を描けるポジション</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">クラウド技術とデータ・AI活用によるDXソリューション事業を手がける上場企業です。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>ARアドバンストテクノロジ株式会社は、クラウド技術とデータ・AI活用によるDXソリューション事業を展開する企業です。これまで培ってきた技術力とプロフェッショナリズムを軸に、２つの事業部を立ち上げ・展開してきました。</p><p><strong>募集背景</strong></p><p>各事業部の成長とともに、一つひとつの事業を本気で推進し、経営視点で導けるエグゼクティブ人材の必要性が高まっています。事業の中核を担う未来の役員候補として、ひとつの事業部に深くコミットしてくださる方をお迎えするための募集です。</p><p><strong>ポジションの魅力</strong></p><ul><li><strong>ひとつの事業に本気で向き合える裁量と責任：</strong>経営の一翼を担いながら、単なる「任せられる人」ではなく、自ら創るリーダーとして裁量をお持ちいただけます</li><li><strong>技術に理解のある現場とともに&quot;実現可能な戦略&quot;を描ける：</strong>ハイレベルなエンジニアチームと信頼関係を築きながら、現実解と理想解を行き来する手応えがあります</li><li><strong>上場したてにあたる今こそ、意義ある挑戦ができるタイミング：</strong>事業部の成長だけでなくM&A、自社プロダクト開発なども視野に入る中、変化の中心で戦略を動かすことができます</li></ul></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 【渋谷】執行役員候補（エグゼクティブクラス）</div>
+          <div class="job-preview">事業部全体を統括し、経営視点での戦略立案から現場マネジメントまで一貫して担う役員候補ポジション</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>業務内容</strong></p><p>一つの事業部全体を統括し、経営視点での戦略立案から現場マネジメントまで一貫して担っていただきます。事業の中長期的な成長を見据えながら、組織・サービス・収益構造のすべてに責任を持ち、推進していく役割です。</p><ul><li>担当事業部の中長期戦略の立案と実行（数十億円規模の事業成長を想定）</li><li>営業／技術部門（開発・インフラ）など複数部門の横断的マネジメントとチームビルディング</li><li>事業収支・KPIのモニタリングと、成果に向けたグロース施策の立案・実行</li><li>組織の基盤づくり（採用計画の策定、人事評価、カルチャー醸成 など）</li><li>経営メンバーとの戦略ミーティング参加、事業部の進捗報告・意思決定サポート</li><li>クライアントとの関係構築・提案活動</li></ul><p><strong>応募要件</strong></p><p><span class='tag tag-must'>MUST</span></p><ul><li>SI業界で事業責任者またはそれに準ずるご経験</li><li>事業全体のPL（売上・利益）管理のご経験</li><li>事業戦略の立案および実行を行ってきたご経験</li><li>事業を成長させるために、人・数字・技術の全体を俯瞰して動ける方</li></ul><p><span class='tag tag-want'>WANT</span></p><ul><li>技術系のバックグラウンド（元エンジニア、PMなど）をお持ちの方</li><li>事業グロースフェーズでの経験（上場準備、事業統合など）</li><li>経営層と近い距離でのレポート・ディスカッション経験</li><li>プロフェッショナルサービス／BtoB SaaS事業いずれかへの理解</li></ul><p><strong>求める人物像</strong></p><ul><li>組織づくりや事業づくりに「自分ごとで」関わることに喜びを感じる方</li><li>柔軟性と推進力を両立し、変化の中で意思を持って動ける方</li><li>役職や上下関係ではなく、フラットな関係性の中で信頼を築ける方</li><li>30〜40代の若い経営層とも対等に議論し、支える立場を楽しめる方</li></ul><p><strong>待遇</strong></p><p>年収：1,000万円〜1,800万円<br>月給：62.5〜112.5万円<br>基本給：50.3〜90.5万円<br>固定残業代（25時間）：12.2〜22.0万円</p>
+        <div class="meta-pills"><span class="pill">📍 東京（渋谷）</span><span class="pill">🏠 ハイブリッド勤務</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"></div>
+</div></div>
+</main>
+<footer>
+  <p>本資料はmorichが吉野賢治 様のためにご用意した個人情報を含む機密資料です。無断転用・転載はご遠慮ください。</p>
+  <p style="margin-top:6px;">© 株式会社morich</p>
+</footer>
+<script>
+  function toggleAcc(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+  function toggleJob(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
